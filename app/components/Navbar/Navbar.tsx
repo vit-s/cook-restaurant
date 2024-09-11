@@ -1,10 +1,10 @@
-import Image from "next/image.js"
-import Link from "next/link.js"
-import React from 'react'
+import Image          from "next/image.js"
+import Link           from "next/link.js"
+import React          from 'react'
 import { Disclosure } from '@headlessui/react'
-import { Bars3Icon } from '@heroicons/react/24/outline'
-import Drawer from "./Drawer";
-import Drawerdata from "./Drawerdata";
+import { Bars3Icon }  from '@heroicons/react/24/outline'
+import Drawer         from "./Drawer";
+import Drawerdata     from "./Drawerdata";
 
 
 interface NavigationItem {
@@ -14,7 +14,7 @@ interface NavigationItem {
 }
 
 
-const navigation: Navigation[] = [
+const navigation: NavigationItem[] = [
   {name: 'Home', href: '#home-section', current: false},
   {name: 'About us', href: '#about-section', current: false},
   {name: 'Recipe', href: '#cook-section', current: false},
