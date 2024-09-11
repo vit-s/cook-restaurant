@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect } from 'react';
-import Navbar               from './Navbar.tsx';
+import Navbar               from './Navbar';
 
 // Define a more specific type for the debounce function
 type DebounceFunction = (...args: unknown[]) => void;
