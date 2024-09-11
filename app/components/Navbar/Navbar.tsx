@@ -13,7 +13,6 @@ interface NavigationItem {
   current: boolean,
 }
 
-
 const navigation: NavigationItem[] = [
   {name: 'Home', href: '#home-section', current: false},
   {name: 'About us', href: '#about-section', current: false},
@@ -22,8 +21,8 @@ const navigation: NavigationItem[] = [
 ]
 
 
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
+const classNames = (...classes: (string | undefined)[]): string => {
+  return classes.filter(Boolean).join(' ');
 }
 
 const Navbar = () => {
