@@ -7,14 +7,33 @@ import Link  from "next/link";
 interface ProductType {
   id: number;
   section: string;
-  link: string;
+  link: string[];
 }
+
+const products: ProductType[] = [
+  {
+    id: 1,
+    section: "Company",
+    link: ['About', 'Careers', 'Mobile', 'Blos', 'How we work?'],
+  },
+  {
+    id: 2,
+    section: "Contact",
+    link: ['Help/FAQ', 'Press', 'Affiliates', 'Hotel owners', 'Partners'],
+  },
+  {
+    id: 3,
+    section: "More",
+    link: ['Recipe', 'Chef', 'Food', 'Support'],
+  }
+]
 
 interface socialLinks {
   imgSrc: string;
   link: string;
   width: number;
 }
+
 
 const socialLinks: socialLinks[] = [
   {
@@ -34,23 +53,7 @@ const socialLinks: socialLinks[] = [
   },
 ]
 
-const products: ProductType[] = [
-  {
-    id: 1,
-    section: "Company",
-    link: ['About', 'Careers', 'Mobile', 'Blos', 'How we work?'],
-  },
-  {
-    id: 2,
-    section: "Contact",
-    link: ['Help/FAQ', 'Press', 'Affiliates', 'Hotel owners', 'Partners'],
-  },
-  {
-    id: 3,
-    section: "More",
-    link: ['Recipe', 'Chef', 'Food', 'Support'],
-  }
-]
+
 
 const Footer = () => {
   return (
