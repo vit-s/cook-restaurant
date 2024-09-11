@@ -1,46 +1,48 @@
 'use client'
 
 import React, { useEffect } from 'react';
-import Navbar               from './Navbar.tsx'
+import Navbar               from './Navbar.tsx';
+
+// Define a more specific type for the debounce function
+type DebounceFunction = (...args: unknown[]) => void;
 
 const Navbarin: React.FC = () => {
   useEffect(() => {
 
     // The debounced function receives our function as a parameter
-    const debounce = (fn: Function) => {
-      // This holds the requestAnimation reference, so we can cancel it if we wish.
-      let frame: number;
+    const debounce = (fn: DebounceFunction) => {
+      let frame: number | undefined;
 
-      // The debounced function returns a new function that can receive a variable number of arguments
-      return (...params: any[]) => {
-
-        // If the frame variable has been defined, clear it now, and queue for next frame
-        if (frame) {
+      return (...params: unknown[]) => {
+        if (frame !== undefined) {
           cancelAnimationFrame(frame);
         }
 
-        // Queue our function call for the next frame
         frame = requestAnimationFrame(() => {
-
-          // Call our function and pass any params we received
           fn(...params);
-        })
-      }
-    }
+        });
+      };
+    };
 
     // Reads out the scroll position and stores it in the data attribute so we can use it in our stylesheets
     const storeScroll = () => {
-      document.documentElement.dataset.scroll = window.scrollY.toString()
-    }
+      document.documentElement.dataset.scroll = window.scrollY.toString();
+    };
 
-    // Listener for new scroll events, gere we debounce our `storeScroll` function.
-    document.addEventListener('scroll', debounce(storeScroll), {
+    // Listener for new scroll events, where we debounce our `storeScroll` function.
+    const debouncedStoreScroll = debounce(storeScroll);
+    document.addEventListener('scroll', debouncedStoreScroll, {
       passive: true
-    })
+    });
 
-    // Update the scroll position for first time
-    storeScroll()
-  }, [])
+    // Update the scroll position for the first time
+    storeScroll();
+
+    // Clean up the event listener on component unmount
+    return () => {
+      document.removeEventListener('scroll', debouncedStoreScroll);
+    };
+  }, []);
 
   return (
     <>
